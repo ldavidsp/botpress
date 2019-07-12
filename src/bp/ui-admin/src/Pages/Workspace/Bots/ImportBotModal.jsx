@@ -28,8 +28,9 @@ class ImportBotModal extends Component {
     e.preventDefault()
     const { botId } = this.state
 
+    const noTimeoutConfig = { timeout: 0 }
     try {
-      await api.getSecured().post(`/admin/bots/${botId}/import`, this.state.fileValue, {
+      await api.getSecured(noTimeoutConfig).post(`/admin/bots/${botId}/import`, this.state.fileValue, {
         headers: { 'Content-Type': 'application/tar+gzip' }
       })
       this.setState({ ...defaultState })
